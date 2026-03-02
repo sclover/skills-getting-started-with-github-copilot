@@ -92,9 +92,22 @@ section h3 {
 }
 
 .participants-list {
-  list-style-type: disc;
-  margin: 5px 0 0 20px;
+  list-style-type: none;
+  margin: 5px 0 0 0;
   padding: 0;
+}
+
+.participants-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.participants-list li .remove {
+  color: #c62828;
+  cursor: pointer;
+  margin-left: 10px;
+  font-weight: bold;
 }
 
 .participants-list li {

@@ -25,3 +25,28 @@ def test_signup_new_student():
     assert resp.status_code == 200
     assert resp.json()["message"].startswith("Signed up")
     assert email in activities[act]["participants"]
+
+def test_unregister_student():
+    act = "Programming Class"
+    email = "test@x.edu"
+
+    # make sure participant is present before deletion
+    if email not in activities[act]["participants"]:
+        activities[act]["participants"].append(email)
+
+    resp = client.delete(f"/activities/{act}/participants", params={"email": email})
+    assert resp.status_code == 200
+    assert email not in activities[act]["participants"]
+
+
+def test_unregister_nonexistent():
+    act = "Soccer Club"
+    email = "not@here.edu"
+
+    # ensure not present
+    if email in activities[act]["participants"]:
+        activities[act]["participants"].remove(email)
+
+    resp = client.delete(f"/activities/{act}/participants", params={"email": email})
+    assert resp.status_code == 404
+
