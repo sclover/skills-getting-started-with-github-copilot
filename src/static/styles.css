@@ -74,6 +74,37 @@ section h3 {
   margin-bottom: 8px;
 }
 
+.participants {
+  margin-top: 10px;
+}
+
+.participants > strong {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.participants .toggle {
+  display: inline-block;
+  margin-left: 8px;
+  font-weight: normal;
+  transition: transform 0.2s;
+}
+
+.participants-list {
+  list-style-type: disc;
+  margin: 5px 0 0 20px;
+  padding: 0;
+}
+
+.participants-list li {
+  margin-bottom: 4px;
+}
+
+.hidden {
+  display: none;
+}
+
 .form-group {
   margin-bottom: 15px;
 }

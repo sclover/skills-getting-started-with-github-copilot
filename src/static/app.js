@@ -25,9 +25,30 @@ document.addEventListener("DOMContentLoaded", () => {
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
+          ${details.participants.length > 0 ? `
+            <div class="participants">
+              <strong>
+                Participants
+                <span class="toggle" title="Show/hide">▶</span>
+              </strong>
+              <ul class="participants-list hidden">
+                ${details.participants.map(p => `<li>${p}</li>`).join("")}
+              </ul>
+            </div>
+          ` : ``}
         `;
 
         activitiesList.appendChild(activityCard);
+
+        // add collapse/expand behavior if participants are present
+        const toggle = activityCard.querySelector(".participants .toggle");
+        if (toggle) {
+          const list = activityCard.querySelector(".participants-list");
+          toggle.addEventListener("click", () => {
+            const hidden = list.classList.toggle("hidden");
+            toggle.textContent = hidden ? "▶" : "▼";
+          });
+        }
 
         // Add option to select dropdown
         const option = document.createElement("option");
